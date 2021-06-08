@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
-# This is an example of how to create unit tests with the python built in unittest lib.
-# Each test class shall inherit from unittest.TestCase. All functions that starts with the
-# name test* inside such a function will be executed when calling unittest.main().
-# Functions not starting with test* will be ignored.
+# This is an example of how to use the built in unittest lib to create test functions
+# that can use the different variations of assert, like assertEqual. Those tests
+# can be executed both from unittest and from pytest as long as the functions starts
+# with test*. Functions not starting with test* will be ignored.
 # The classes that inherits from unittest.TestCase can be called whatever.
 
 # Methods could be
@@ -18,12 +18,15 @@
 
 import unittest
 import src.find_13_in_number as task3
+import pytest
 
 class TestTask3(unittest.TestCase):
+
+    @pytest.mark.funtest # It is possible to only run this by using -m funtest
     def test_13_pos_math_1(self):
         self.assertEqual(task3.find_13_by_math(413044), 1, "Should be 1")
 
-    def test_13_pos_math_2(self):
+    def prov_13_pos_math_2(self): # This is never run since it does not start with test
         self.assertNotEqual(task3.find_13_by_math(413044), -1, "Should be 1")
 
     def test_13_pos_math_3(self):
